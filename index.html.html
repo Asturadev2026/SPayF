@@ -502,7 +502,7 @@
     </div>
 
     <div class="login-form-foot">
-      <div>© 2025 SPAY Technology Pvt Ltd</div>
+      <div>© 2026 SPAY Technology Pvt Ltd</div>
       <div>
         <a href="#">Privacy</a>
         <a href="#">Terms</a>
@@ -582,8 +582,8 @@
     <div class="status-bar">
       <div class="stat"><span class="live">●</span><span>LIVE</span></div>
       <div class="stat"><span>Engine:</span><span class="stat-val" id="engineStatus">Idle</span></div>
-      <div class="stat"><span>Last Run:</span><span class="stat-val" id="lastRun">02 Dec 2025 23:59:10</span></div>
-      <div class="stat"><span>Next Auto:</span><span class="stat-val">03 Dec 2025 06:00:00</span></div>
+      <div class="stat"><span>Last Run:</span><span class="stat-val" id="lastRun">02 May 2026 23:59:10</span></div>
+      <div class="stat"><span>Next Auto:</span><span class="stat-val">03 May 2026 06:00:00</span></div>
       <div class="stat"><span>Queue:</span><span class="stat-val" id="queueDepth">0</span></div>
       <div class="stat" style="margin-left:auto;"><span>Sponsor Banks:</span><span class="stat-val">YES · Fino · NSDL · Airtel PB · Axis</span></div>
     </div>
@@ -670,10 +670,10 @@ const RULES = [
   { id:'R030', vendor:'TRM', product:'AEPS', slab:'3001-10000', baseRate:11.16, gst:0, gstInclusive:true, finalCharge:11.16, commission:11.16, type:'commission', commissionType:'flat', effDate:'2024-04-01', status:'active' },
 
   // Earthly
-  { id:'R031', vendor:'EARTHLY', product:'BBPS Electricity', slab:'100-2000', baseRate:2.54, gst:18, gstInclusive:false, finalCharge:3.00, commission:1.50, type:'commission', effDate:'2025-07-26', status:'active' },
-  { id:'R032', vendor:'EARTHLY', product:'BBPS Electricity', slab:'2001-10000', baseRate:0, gst:0, gstInclusive:true, finalCharge:0, commission:0.35, type:'commission', commissionType:'percent', effDate:'2025-07-26', status:'active' },
-  { id:'R033', vendor:'EARTHLY', product:'BBPS Electricity', slab:'10001-100000', baseRate:1.25, gst:18, gstInclusive:false, finalCharge:1.47, commission:0.55, type:'commission', commissionType:'percent', effDate:'2025-07-26', status:'active' },
-  { id:'R034', vendor:'EARTHLY', product:'BBPS Electricity', slab:'Above 100001', baseRate:0, gst:0, gstInclusive:true, finalCharge:0, commission:0.40, type:'commission', commissionType:'percent', effDate:'2025-07-26', status:'active' },
+  { id:'R031', vendor:'EARTHLY', product:'BBPS Electricity', slab:'100-2000', baseRate:2.54, gst:18, gstInclusive:false, finalCharge:3.00, commission:1.50, type:'commission', effDate:'2026-04-26', status:'active' },
+  { id:'R032', vendor:'EARTHLY', product:'BBPS Electricity', slab:'2001-10000', baseRate:0, gst:0, gstInclusive:true, finalCharge:0, commission:0.35, type:'commission', commissionType:'percent', effDate:'2026-04-26', status:'active' },
+  { id:'R033', vendor:'EARTHLY', product:'BBPS Electricity', slab:'10001-100000', baseRate:1.25, gst:18, gstInclusive:false, finalCharge:1.47, commission:0.55, type:'commission', commissionType:'percent', effDate:'2026-05-26', status:'active' },
+  { id:'R034', vendor:'EARTHLY', product:'BBPS Electricity', slab:'Above 100001', baseRate:0, gst:0, gstInclusive:true, finalCharge:0, commission:0.40, type:'commission', commissionType:'percent', effDate:'2026-05-26', status:'active' },
 
   // ISU
   { id:'R035', vendor:'ISU', product:'Cash Withdraw', slab:'0-400', baseRate:0, gst:0, gstInclusive:true, finalCharge:0, commission:0, type:'commission', effDate:'2024-04-01', status:'active' },
@@ -875,7 +875,7 @@ function genTransactions(){
         status,
         errCode: err.code,
         errMsg: err.msg,
-        timestamp: `2025-12-02 ${hour.toString().padStart(2,'0')}:${minute.toString().padStart(2,'0')}:${second.toString().padStart(2,'0')}`,
+        timestamp: `2026-05-02 ${hour.toString().padStart(2,'0')}:${minute.toString().padStart(2,'0')}:${second.toString().padStart(2,'0')}`,
         ageHours: status==='SUCCESS' ? null : ageHours,
         reconStatus,
         breakAmount,
@@ -896,7 +896,7 @@ const TXNS = genTransactions();
 // Compute breaks from transactions
 const BREAKS = TXNS.filter(t => t.reconStatus !== 'matched').map(t => ({
   ...t,
-  detectedAt: '2025-12-02 23:45:00',
+  detectedAt: '2026-05-02 23:45:00',
   assignedTo: ['Operations', 'Finance', 'Tech', 'Unassigned'][Math.floor(Math.random()*4)],
   priority: t.breakAmount > 5 ? 'High' : t.breakAmount > 1 ? 'Medium' : 'Low',
   ageDays: Math.floor(Math.random()*15),
@@ -904,14 +904,14 @@ const BREAKS = TXNS.filter(t => t.reconStatus !== 'matched').map(t => ({
 
 // Sample disputes raised with vendors
 const DISPUTES = [
-  { id:'DSP-2025-1124', vendor:'INSTANTPAY', raised:'2025-11-28', amount:165321.40, status:'Open', txCount:7170, subject:'IMPS Slab 1001-25000 GST Treatment Mismatch', priority:'High', assignedTo:'Finance', responseExpected:'2025-12-05' },
-  { id:'DSP-2025-1118', vendor:'INSTANTPAY', raised:'2025-11-25', amount:5813.40, status:'Acknowledged', txCount:1211, subject:'IMPS Slab 100-1000 Base Rate Discrepancy', priority:'Medium', assignedTo:'Finance', responseExpected:'2025-12-02' },
-  { id:'DSP-2025-1112', vendor:'TRM', raised:'2025-11-20', amount:78400.00, status:'Under Review', txCount:340, subject:'MATM Slab 3001-10000 Commission Not Paid', priority:'High', assignedTo:'Operations', responseExpected:'2025-12-01' },
-  { id:'DSP-2025-1106', vendor:'EASYMUDRA', raised:'2025-11-15', amount:34200.00, status:'Resolved', txCount:1421, subject:'DMT Refund Surcharge Not Reversed', priority:'Medium', assignedTo:'Finance', responseExpected:'Closed' },
-  { id:'DSP-2025-1098', vendor:'INSTANTPAY', raised:'2025-11-10', amount:22184.60, status:'Open', txCount:548, subject:'Bio Auth Fee charged on failed AEPS', priority:'Medium', assignedTo:'Operations', responseExpected:'2025-12-08' },
-  { id:'DSP-2025-1092', vendor:'PAYSPRINT', raised:'2025-11-08', amount:12860.00, status:'Resolved', txCount:284, subject:'BBPS commission delay - 14 day lag', priority:'Low', assignedTo:'Finance', responseExpected:'Closed' },
-  { id:'DSP-2025-1085', vendor:'RAZORPAY', raised:'2025-11-04', amount:41280.00, status:'Resolved', txCount:1840, subject:'Visa Corporate CC charged at wrong slab', priority:'Medium', assignedTo:'Finance', responseExpected:'Closed' },
-  { id:'DSP-2025-1078', vendor:'AIRTELPB', raised:'2025-10-30', amount:7800.00, status:'Open', txCount:156, subject:'AEPS commission shortfall vs MoU', priority:'Low', assignedTo:'Operations', responseExpected:'2025-12-10' },
+  { id:'DSP-2026-1124', vendor:'INSTANTPAY', raised:'2026-04-26', amount:165321.40, status:'Open', txCount:7170, subject:'IMPS Slab 1001-25000 GST Treatment Mismatch', priority:'High', assignedTo:'Finance', responseExpected:'2026-04-05' },
+  { id:'DSP-2026-1118', vendor:'INSTANTPAY', raised:'2026-04-25', amount:5813.40, status:'Acknowledged', txCount:1211, subject:'IMPS Slab 100-1000 Base Rate Discrepancy', priority:'Medium', assignedTo:'Finance', responseExpected:'2026-05-02' },
+  { id:'DSP-2026-1112', vendor:'TRM', raised:'2026-04-20', amount:78400.00, status:'Under Review', txCount:340, subject:'MATM Slab 3001-10000 Commission Not Paid', priority:'High', assignedTo:'Operations', responseExpected:'2026-04-01' },
+  { id:'DSP-2026-1106', vendor:'EASYMUDRA', raised:'2026-04-15', amount:34200.00, status:'Resolved', txCount:1421, subject:'DMT Refund Surcharge Not Reversed', priority:'Medium', assignedTo:'Finance', responseExpected:'Closed' },
+  { id:'DSP-2026-1098', vendor:'INSTANTPAY', raised:'2026-04-10', amount:22184.60, status:'Open', txCount:548, subject:'Bio Auth Fee charged on failed AEPS', priority:'Medium', assignedTo:'Operations', responseExpected:'2026-04-08' },
+  { id:'DSP-2026-1092', vendor:'PAYSPRINT', raised:'2026-04-08', amount:12860.00, status:'Resolved', txCount:284, subject:'BBPS commission delay - 14 day lag', priority:'Low', assignedTo:'Finance', responseExpected:'Closed' },
+  { id:'DSP-2026-1085', vendor:'RAZORPAY', raised:'2026-04-04', amount:41280.00, status:'Resolved', txCount:1840, subject:'Visa Corporate CC charged at wrong slab', priority:'Medium', assignedTo:'Finance', responseExpected:'Closed' },
+  { id:'DSP-2026-1078', vendor:'AIRTELPB', raised:'2026-04-30', amount:7800.00, status:'Open', txCount:156, subject:'AEPS commission shortfall vs MoU', priority:'Low', assignedTo:'Operations', responseExpected:'2026-04-10' },
 ];
 
 // Settlement / Wallet flow
@@ -935,13 +935,13 @@ const PENDING = TXNS.filter(t => t.status === 'REFUND').slice(0, 28).map(t => ({
 
 // Daily recon runs history
 const RECON_RUNS = [
-  { id:'RUN-12025-1202-08', date:'2025-12-02', time:'06:00 IST', vendor:'ALL', txCount:285412, matched:271847, mismatched:9842, missing:3723, durationSec:142, status:'success' },
-  { id:'RUN-12025-1202-04', date:'2025-12-02', time:'02:00 IST', vendor:'INSTANTPAY', txCount:23074, matched:21380, mismatched:1247, missing:447, durationSec:18, status:'success' },
-  { id:'RUN-12025-1201-08', date:'2025-12-01', time:'06:00 IST', vendor:'ALL', txCount:278940, matched:265892, mismatched:9482, missing:3566, durationSec:138, status:'success' },
-  { id:'RUN-12025-1130-08', date:'2025-11-30', time:'06:00 IST', vendor:'ALL', txCount:281204, matched:268120, mismatched:9568, missing:3516, durationSec:140, status:'success' },
-  { id:'RUN-12025-1129-08', date:'2025-11-29', time:'06:00 IST', vendor:'ALL', txCount:267810, matched:255047, mismatched:9180, missing:3583, durationSec:135, status:'success' },
-  { id:'RUN-12025-1128-08', date:'2025-11-28', time:'06:00 IST', vendor:'ALL', txCount:288471, matched:274208, mismatched:10421, missing:3842, durationSec:145, status:'success' },
-  { id:'RUN-12025-1127-08', date:'2025-11-27', time:'06:00 IST', vendor:'ALL', txCount:279320, matched:266014, mismatched:9684, missing:3622, durationSec:139, status:'success' },
+  { id:'RUN-12025-1202-08', date:'2026-05-02', time:'06:00 IST', vendor:'ALL', txCount:285412, matched:271847, mismatched:9842, missing:3723, durationSec:142, status:'success' },
+  { id:'RUN-12025-1202-04', date:'2026-05-02', time:'02:00 IST', vendor:'INSTANTPAY', txCount:23074, matched:21380, mismatched:1247, missing:447, durationSec:18, status:'success' },
+  { id:'RUN-12025-1201-08', date:'2026-04-01', time:'06:00 IST', vendor:'ALL', txCount:278940, matched:265892, mismatched:9482, missing:3566, durationSec:138, status:'success' },
+  { id:'RUN-12025-1130-08', date:'2026-04-30', time:'06:00 IST', vendor:'ALL', txCount:281204, matched:268120, mismatched:9568, missing:3516, durationSec:140, status:'success' },
+  { id:'RUN-12025-1129-08', date:'2026-04-29', time:'06:00 IST', vendor:'ALL', txCount:267810, matched:255047, mismatched:9180, missing:3583, durationSec:135, status:'success' },
+  { id:'RUN-12025-1128-08', date:'2026-04-28', time:'06:00 IST', vendor:'ALL', txCount:288471, matched:274208, mismatched:10421, missing:3842, durationSec:145, status:'success' },
+  { id:'RUN-12025-1127-08', date:'2026-04-27', time:'06:00 IST', vendor:'ALL', txCount:279320, matched:266014, mismatched:9684, missing:3622, durationSec:139, status:'success' },
 ];
 
 // Retailers/distributors commission ledger
@@ -962,7 +962,7 @@ const RETAILER_LEDGER = (()=>{
       earnedToday: earned,
       paidToday: paid,
       pending,
-      lastTxn: '2025-12-02',
+      lastTxn: '2026-05-02',
       status: pending > 500 ? 'Hold' : 'Active',
     });
   }
@@ -971,16 +971,16 @@ const RETAILER_LEDGER = (()=>{
 
 // Audit log
 const AUDIT_LOG = [
-  { time:'2025-12-02 23:45:12', user:'recon-bot', action:'Auto Recon Run', detail:'Completed batch recon for 14 vendors, 285,412 txns, 3,723 missing matches', severity:'info' },
-  { time:'2025-12-02 22:30:08', user:'priya.s@spayindia.com', action:'Rule Modified', detail:'Updated rule R002 (Instantpay IMPS 1001-25000) base rate from 3.50 to 3.50 with GST flag added', severity:'warn' },
-  { time:'2025-12-02 19:14:33', user:'rajesh.k@spayindia.com', action:'Dispute Raised', detail:'DSP-2025-1124 raised with Instantpay for Rs. 1,65,321.40 (IMPS Slab 1001-25000 GST mismatch)', severity:'warn' },
-  { time:'2025-12-02 16:08:21', user:'admin', action:'Rule Created', detail:'New rule R060 added for Axis Bank NEFT settlement', severity:'info' },
-  { time:'2025-12-02 14:22:09', user:'recon-bot', action:'Vendor File Ingested', detail:'Instantpay_DAILY_2025-12-02.xlsx parsed, 23,074 rows, 23,070 valid', severity:'info' },
-  { time:'2025-12-02 12:50:44', user:'sourav.m@spayindia.com', action:'Break Resolved', detail:'BRK-9412: Wallet balance variance resolved, Rs. 4,827 adjusted to suspense', severity:'info' },
-  { time:'2025-12-02 11:18:32', user:'recon-bot', action:'Alert Triggered', detail:'Bio Auth Fee leakage threshold breached for Instantpay - Rs. 515 in 1 day', severity:'warn' },
-  { time:'2025-12-02 09:45:17', user:'recon-bot', action:'Alert Triggered', detail:'TRM AEPS commission shortfall vs MoU - 47 txns affected', severity:'danger' },
-  { time:'2025-12-02 08:30:00', user:'sachin.k@spayindia.com', action:'Rule Approved', detail:'Earthly BBPS slab restructure (effective 2025-07-26) approved by Sales Head', severity:'info' },
-  { time:'2025-12-02 06:00:08', user:'recon-bot', action:'Daily Recon Started', detail:'Scheduled daily recon job kicked off', severity:'info' },
+  { time:'2026-05-02 23:45:12', user:'recon-bot', action:'Auto Recon Run', detail:'Completed batch recon for 14 vendors, 285,412 txns, 3,723 missing matches', severity:'info' },
+  { time:'2026-05-02 22:30:08', user:'priya.s@spayindia.com', action:'Rule Modified', detail:'Updated rule R002 (Instantpay IMPS 1001-25000) base rate from 3.50 to 3.50 with GST flag added', severity:'warn' },
+  { time:'2026-05-02 19:14:33', user:'rajesh.k@spayindia.com', action:'Dispute Raised', detail:'DSP-2026-1124 raised with Instantpay for Rs. 1,65,321.40 (IMPS Slab 1001-25000 GST mismatch)', severity:'warn' },
+  { time:'2026-05-02 16:08:21', user:'admin', action:'Rule Created', detail:'New rule R060 added for Axis Bank NEFT settlement', severity:'info' },
+  { time:'2026-05-02 14:22:09', user:'recon-bot', action:'Vendor File Ingested', detail:'Instantpay_DAILY_2026-05-02.xlsx parsed, 23,074 rows, 23,070 valid', severity:'info' },
+  { time:'2026-05-02 12:50:44', user:'sourav.m@spayindia.com', action:'Break Resolved', detail:'BRK-9412: Wallet balance variance resolved, Rs. 4,827 adjusted to suspense', severity:'info' },
+  { time:'2026-05-02 11:18:32', user:'recon-bot', action:'Alert Triggered', detail:'Bio Auth Fee leakage threshold breached for Instantpay - Rs. 515 in 1 day', severity:'warn' },
+  { time:'2026-05-02 09:45:17', user:'recon-bot', action:'Alert Triggered', detail:'TRM AEPS commission shortfall vs MoU - 47 txns affected', severity:'danger' },
+  { time:'2026-05-02 08:30:00', user:'sachin.k@spayindia.com', action:'Rule Approved', detail:'Earthly BBPS slab restructure (effective 2026-04-26) approved by Sales Head', severity:'info' },
+  { time:'2026-05-02 06:00:08', user:'recon-bot', action:'Daily Recon Started', detail:'Scheduled daily recon job kicked off', severity:'info' },
 ];
 
 // ============================================================
@@ -989,7 +989,7 @@ const AUDIT_LOG = [
 const INSTANTPAY_RECON = {
   vendor: 'Instantpay',
   vendorId: 'INSTANTPAY',
-  date: '02 Dec 2025',
+  date: '02 May 2026',
   ruleBookVersion: 'v2025.12',
   totalTxns: 23074,
   matched: 5657,
@@ -1168,13 +1168,13 @@ const PRODUCT_CATALOG = [
 
 // Grouped dispute queue (by product)
 const DISPUTE_QUEUE = [
-  { id:'DSP-2025-1124', product:'IMPS (DPN)',       slab:'1001-25000', txCount:7170, overcharge:165321.40, priority:'High',   age:'4 days', status:'Open',         rootCause:'GST treatment - rule book treats Rs.3.50 as inclusive' },
-  { id:'DSP-2025-1118', product:'IMPS (DPN)',       slab:'100-1000',   txCount:1211, overcharge:5813.40,   priority:'Medium', age:'7 days', status:'Acknowledged', rootCause:'GST treatment - same as above for smaller slab' },
-  { id:'DSP-2025-1098', product:'AEPS Bio Auth',    slab:'All',        txCount:548,  overcharge:22184.60,  priority:'Medium', age:'22 days',status:'Open',         rootCause:'Bio auth fee charged on failed AEPS attempts' },
-  { id:'DSP-2025-1112', product:'CC Payment (SPN)', slab:'NEFT route', txCount:340,  overcharge:78400.00,  priority:'High',   age:'12 days',status:'Under Review', rootCause:'IMPS slab rate applied instead of NEFT' },
-  { id:'DSP-2025-1106', product:'UPI (PPN)',        slab:'All',        txCount:8010, overcharge:47754.00,  priority:'High',   age:'New',    status:'Pending',      rootCause:'No rule defined for Instantpay UPI Payout' },
-  { id:'DSP-2025-1085', product:'CC Payment (RZP)', slab:'Corporate',  txCount:1840, overcharge:41280.00,  priority:'Medium', age:'28 days',status:'Resolved',     rootCause:'Visa Corporate CC charged at wrong slab' },
-  { id:'DSP-2025-1078', product:'AEPS Settlement',  slab:'All',        txCount:156,  overcharge:7800.00,   priority:'Low',    age:'33 days',status:'Open',         rootCause:'AEPS commission shortfall vs MoU' },
+  { id:'DSP-2026-1124', product:'IMPS (DPN)',       slab:'1001-25000', txCount:7170, overcharge:165321.40, priority:'High',   age:'4 days', status:'Open',         rootCause:'GST treatment - rule book treats Rs.3.50 as inclusive' },
+  { id:'DSP-2026-1118', product:'IMPS (DPN)',       slab:'100-1000',   txCount:1211, overcharge:5813.40,   priority:'Medium', age:'7 days', status:'Acknowledged', rootCause:'GST treatment - same as above for smaller slab' },
+  { id:'DSP-2026-1098', product:'AEPS Bio Auth',    slab:'All',        txCount:548,  overcharge:22184.60,  priority:'Medium', age:'22 days',status:'Open',         rootCause:'Bio auth fee charged on failed AEPS attempts' },
+  { id:'DSP-2026-1112', product:'CC Payment (SPN)', slab:'NEFT route', txCount:340,  overcharge:78400.00,  priority:'High',   age:'12 days',status:'Under Review', rootCause:'IMPS slab rate applied instead of NEFT' },
+  { id:'DSP-2026-1106', product:'UPI (PPN)',        slab:'All',        txCount:8010, overcharge:47754.00,  priority:'High',   age:'New',    status:'Pending',      rootCause:'No rule defined for Instantpay UPI Payout' },
+  { id:'DSP-2026-1085', product:'CC Payment (RZP)', slab:'Corporate',  txCount:1840, overcharge:41280.00,  priority:'Medium', age:'28 days',status:'Resolved',     rootCause:'Visa Corporate CC charged at wrong slab' },
+  { id:'DSP-2026-1078', product:'AEPS Settlement',  slab:'All',        txCount:156,  overcharge:7800.00,   priority:'Low',    age:'33 days',status:'Open',         rootCause:'AEPS commission shortfall vs MoU' },
 ];
 
 
@@ -1506,7 +1506,7 @@ function renderDashboard(){
         <i data-lucide="alert-octagon"></i>
         <div style="flex:1;">
           <div class="alert-title">Instantpay has overcharged INR ${r.totalCharges.leakage.toLocaleString('en-IN',{minimumFractionDigits:2})} across ${num(r.vendorOvercharge.txnCount)} transactions today</div>
-          <div class="alert-body">Primary root cause: <strong>Rule R002 (IMPS Slab 1001-25000) GST treatment</strong> mismatch. Rule book treats Rs. 3.50 as inclusive but vendor charges Rs. 3.50 + 18% GST = Rs. 4.13. Dispute DSP-2025-1124 already raised for ${inrShort(165321)}.</div>
+          <div class="alert-body">Primary root cause: <strong>Rule R002 (IMPS Slab 1001-25000) GST treatment</strong> mismatch. Rule book treats Rs. 3.50 as inclusive but vendor charges Rs. 3.50 + 18% GST = Rs. 4.13. Dispute DSP-2026-1124 already raised for ${inrShort(165321)}.</div>
         </div>
         <button class="btn btn-danger" onclick="navigate(\'disputes\')">View Dispute →</button>
       </div>
@@ -1813,7 +1813,7 @@ function renderLiveRecon(){
         <div style="color:#10B981;">[23:45:00] INFO  Recon engine started · job_id=RUN-12025-1202-08</div>
         <div>[23:45:01] INFO  Loading rule book... 60 active rules loaded</div>
         <div>[23:45:02] INFO  Connecting to Instantpay SFTP... OK</div>
-        <div>[23:45:03] INFO  Downloaded Instantpay_DAILY_2025-12-02.xlsx (4.7 MB, 23,074 rows)</div>
+        <div>[23:45:03] INFO  Downloaded Instantpay_DAILY_2026-05-02.xlsx (4.7 MB, 23,074 rows)</div>
         <div>[23:45:04] INFO  Connecting to Easymudra API... OK</div>
         <div>[23:45:05] INFO  Pulled 18,420 transactions from Easymudra</div>
         <div>[23:45:08] INFO  Schema validation: 285,412 rows passed, 87 rows failed</div>
@@ -2285,7 +2285,7 @@ function showRuleDetail(rid){
 
 function fixRule(){
   toast('Rule R002 GST flag changed to Exclusive. Re-running recon...', 'success');
-  setTimeout(()=> toast('Recon re-run complete. Rs. 1.35L recovery posted to dispute DSP-2025-1124', 'success'), 2000);
+  setTimeout(()=> toast('Recon re-run complete. Rs. 1.35L recovery posted to dispute DSP-2026-1124', 'success'), 2000);
 }
 
 // ============================================================
@@ -2606,11 +2606,11 @@ function renderTopBreaks(){
 
 function renderBreaksByCause(){
   const causes = [
-    { cause:'R002 GST treatment mismatch on IMPS Slab 1001-25000', count:7170, value:4516.71, dailyImpact:4516.71, annual:1649000, dispute:'DSP-2025-1124', priority:'High', action:'Fix Rule Book + Auto-recoup' },
-    { cause:'No rule defined for Instantpay UPI Payout', count:8010, value:47754.00, dailyImpact:47754, annual:17430210, dispute:'DSP-2025-1106', priority:'High', action:'Add Rule R004' },
-    { cause:'R001 GST treatment on IMPS Slab 100-1000', count:1211, value:193.76, dailyImpact:193.76, annual:70723, dispute:'DSP-2025-1118', priority:'Medium', action:'Fix Rule Book' },
-    { cause:'Bio Auth Fee on failed AEPS attempts', count:548, value:515.12, dailyImpact:515.12, annual:188018, dispute:'DSP-2025-1098', priority:'Medium', action:'Recoup from vendor' },
-    { cause:'CC Payment wrong slab (IMPS vs NEFT)', count:340, value:2407.20, dailyImpact:2407.20, annual:878628, dispute:'DSP-2025-1112', priority:'High', action:'Update rule R007' },
+    { cause:'R002 GST treatment mismatch on IMPS Slab 1001-25000', count:7170, value:4516.71, dailyImpact:4516.71, annual:1649000, dispute:'DSP-2026-1124', priority:'High', action:'Fix Rule Book + Auto-recoup' },
+    { cause:'No rule defined for Instantpay UPI Payout', count:8010, value:47754.00, dailyImpact:47754, annual:17430210, dispute:'DSP-2026-1106', priority:'High', action:'Add Rule R004' },
+    { cause:'R001 GST treatment on IMPS Slab 100-1000', count:1211, value:193.76, dailyImpact:193.76, annual:70723, dispute:'DSP-2026-1118', priority:'Medium', action:'Fix Rule Book' },
+    { cause:'Bio Auth Fee on failed AEPS attempts', count:548, value:515.12, dailyImpact:515.12, annual:188018, dispute:'DSP-2026-1098', priority:'Medium', action:'Recoup from vendor' },
+    { cause:'CC Payment wrong slab (IMPS vs NEFT)', count:340, value:2407.20, dailyImpact:2407.20, annual:878628, dispute:'DSP-2026-1112', priority:'High', action:'Update rule R007' },
     { cause:'Refund surcharge not reversed', count:170, value:1117.78, dailyImpact:1117.78, annual:407989, dispute:'-', priority:'Medium', action:'Verify reversal' },
     { cause:'Tiny KYC service charges undefined', count:96, value:281.36, dailyImpact:281.36, annual:102696, dispute:'-', priority:'Low', action:'Add rules for KYC products' },
   ];
@@ -2758,7 +2758,7 @@ function renderFullLedger(){
 
 function bulkRaiseDispute(){
   toast('Bulk dispute creation initiated for selected breaks', 'success');
-  setTimeout(()=> toast('3 disputes created · DSP-2025-1130 to DSP-2025-1132', 'success'), 1800);
+  setTimeout(()=> toast('3 disputes created · DSP-2026-1130 to DSP-2026-1132', 'success'), 1800);
 }
 
 // ============================================================
@@ -3539,9 +3539,9 @@ function showDisputeDetail(did){
 
   const timeline = [
     { date:d.raised, action:'Dispute Raised', detail:`Internal team raised dispute with ${v?v.name:d.vendor}. Amount: ${inr(d.amount)}, ${d.txCount} txns flagged.`, status:'done' },
-    { date:'2025-11-26', action:'Vendor Notified', detail:'Email + ticket raised on vendor portal. Acknowledgment received.', status: d.status==='Open' ? 'pending' : 'done' },
-    { date:'2025-11-28', action:'Under Vendor Review', detail:'Vendor finance team investigating the rate discrepancy.', status: ['Under Review','Resolved'].includes(d.status) ? 'done' : 'pending' },
-    { date:'2025-12-01', action:'Resolution & Credit', detail:'Credit note issued and posted to wallet.', status: d.status === 'Resolved' ? 'done' : 'pending' },
+    { date:'2026-04-26', action:'Vendor Notified', detail:'Email + ticket raised on vendor portal. Acknowledgment received.', status: d.status==='Open' ? 'pending' : 'done' },
+    { date:'2026-04-28', action:'Under Vendor Review', detail:'Vendor finance team investigating the rate discrepancy.', status: ['Under Review','Resolved'].includes(d.status) ? 'done' : 'pending' },
+    { date:'2026-04-01', action:'Resolution & Credit', detail:'Credit note issued and posted to wallet.', status: d.status === 'Resolved' ? 'done' : 'pending' },
   ];
 
   openDrawer(`Dispute ${d.id}`, `Raised with ${v?v.name:d.vendor} on ${d.raised}`, `
@@ -3615,8 +3615,8 @@ function renderGST(){
     </div>
 
     <div class="kpi-grid">
-      <div class="kpi-card"><div class="kpi-label">Input GST (Nov 2025)</div><div class="kpi-value">${inrShort(gstData.inputGstThisMonth)}</div><div class="kpi-foot">From vendor invoices</div></div>
-      <div class="kpi-card"><div class="kpi-label">Output GST (Nov 2025)</div><div class="kpi-value">${inrShort(gstData.outputGstThisMonth)}</div><div class="kpi-foot">Charged on commissions</div></div>
+      <div class="kpi-card"><div class="kpi-label">Input GST (May 2026)</div><div class="kpi-value">${inrShort(gstData.inputGstThisMonth)}</div><div class="kpi-foot">From vendor invoices</div></div>
+      <div class="kpi-card"><div class="kpi-label">Output GST (May 2026)</div><div class="kpi-value">${inrShort(gstData.outputGstThisMonth)}</div><div class="kpi-foot">Charged on commissions</div></div>
       <div class="kpi-card"><div class="kpi-label">Net GST Liability</div><div class="kpi-value" style="color:var(--info)">${inrShort(gstData.netGstLiability)}</div><div class="kpi-foot">Payable to Govt</div></div>
       <div class="kpi-card accent"><div class="kpi-label">TDS Variance</div><div class="kpi-value" style="color:#F59E0B">${inrShort(gstData.tdsDifference)}</div><div class="kpi-foot">vs Form 26AS</div></div>
     </div>
@@ -3682,11 +3682,11 @@ function renderGST(){
         <table class="data-table">
           <thead><tr><th>Return</th><th>Period</th><th>Due Date</th><th>Status</th><th class="num">Liability</th><th></th></tr></thead>
           <tbody>
-            <tr><td><strong>GSTR-1</strong><div style="font-size:11px; color:var(--text-tertiary);">Outward supplies</div></td><td>November 2025</td><td>11 Dec 2025</td><td><span class="pill pill-warn">Due in 9 days</span></td><td class="num">${inr(894200)}</td><td><button class="btn btn-ghost" style="padding:4px 10px; font-size:11px;">Prepare</button></td></tr>
-            <tr><td><strong>GSTR-3B</strong><div style="font-size:11px; color:var(--text-tertiary);">Monthly summary</div></td><td>November 2025</td><td>20 Dec 2025</td><td><span class="pill pill-info">Draft Ready</span></td><td class="num">${inr(948100)}</td><td><button class="btn btn-ghost" style="padding:4px 10px; font-size:11px;">Review</button></td></tr>
-            <tr><td><strong>TDS Form 26Q</strong><div style="font-size:11px; color:var(--text-tertiary);">Quarterly TDS return</div></td><td>Q3 FY26</td><td>31 Jan 2026</td><td><span class="pill pill-neutral">Pending</span></td><td class="num">${inr(187420)}</td><td><button class="btn btn-ghost" style="padding:4px 10px; font-size:11px;">Schedule</button></td></tr>
-            <tr><td><strong>GSTR-9</strong><div style="font-size:11px; color:var(--text-tertiary);">Annual return</div></td><td>FY 2024-25</td><td>31 Dec 2025</td><td><span class="pill pill-danger">Due in 28 days</span></td><td class="num">${inr(8740000)}</td><td><button class="btn btn-ghost" style="padding:4px 10px; font-size:11px;">Start</button></td></tr>
-            <tr><td><strong>GSTR-1 (Oct)</strong><div style="font-size:11px; color:var(--text-tertiary);">Outward supplies</div></td><td>October 2025</td><td>11 Nov 2025</td><td><span class="pill pill-success">✓ Filed</span></td><td class="num">${inr(862400)}</td><td><span style="font-size:11px; color:var(--text-tertiary);">ACK: AC1234567</span></td></tr>
+            <tr><td><strong>GSTR-1</strong><div style="font-size:11px; color:var(--text-tertiary);">Outward supplies</div></td><td>May 2026</td><td>11 April 2026</td><td><span class="pill pill-warn">Due in 9 days</span></td><td class="num">${inr(894200)}</td><td><button class="btn btn-ghost" style="padding:4px 10px; font-size:11px;">Prepare</button></td></tr>
+            <tr><td><strong>GSTR-3B</strong><div style="font-size:11px; color:var(--text-tertiary);">Monthly summary</div></td><td>May 2026</td><td>20 April 2026</td><td><span class="pill pill-info">Draft Ready</span></td><td class="num">${inr(948100)}</td><td><button class="btn btn-ghost" style="padding:4px 10px; font-size:11px;">Review</button></td></tr>
+            <tr><td><strong>TDS Form 26Q</strong><div style="font-size:11px; color:var(--text-tertiary);">Quarterly TDS return</div></td><td>Q3 FY26</td><td>31 April 2026</td><td><span class="pill pill-neutral">Pending</span></td><td class="num">${inr(187420)}</td><td><button class="btn btn-ghost" style="padding:4px 10px; font-size:11px;">Schedule</button></td></tr>
+            <tr><td><strong>GSTR-9</strong><div style="font-size:11px; color:var(--text-tertiary);">Annual return</div></td><td>FY 2024-25</td><td>31 April 2026</td><td><span class="pill pill-danger">Due in 28 days</span></td><td class="num">${inr(8740000)}</td><td><button class="btn btn-ghost" style="padding:4px 10px; font-size:11px;">Start</button></td></tr>
+            <tr><td><strong>GSTR-1 (Oct)</strong><div style="font-size:11px; color:var(--text-tertiary);">Outward supplies</div></td><td>Feb 2026</td><td>11 March 2026</td><td><span class="pill pill-success">✓ Filed</span></td><td class="num">${inr(862400)}</td><td><span style="font-size:11px; color:var(--text-tertiary);">ACK: AC1234567</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -3926,7 +3926,7 @@ function initReportCharts(){
 // MODULE 15: AUDIT TRAIL
 // ============================================================
 function renderAudit(){
-  const today = AUDIT_LOG.filter(a => a.time.startsWith('2025-12-02'));
+  const today = AUDIT_LOG.filter(a => a.time.startsWith('2026-05-02'));
   const warnings = AUDIT_LOG.filter(a => a.severity === 'warn').length;
   const danger = AUDIT_LOG.filter(a => a.severity === 'danger').length;
 
@@ -4403,25 +4403,25 @@ function renderApiKeysPanel(){
 // MODULE: FILE INGESTION
 // ============================================================
 const FILE_FEED = [
-  { id:'F-9842', file:'Instantpay_DAILY_2025-12-02.xlsx', vendor:'INSTANTPAY', size:'4.7 MB', rows:23074, received:'2025-12-02 23:45:08', source:'auto-fetch', folder:'/recon/inbox/instantpay/', status:'completed', validated:23074, failed:0, duration:'18s', user:'recon-bot' },
-  { id:'F-9841', file:'Easymudra_settlement_2025-12-02.csv', vendor:'EASYMUDRA', size:'3.2 MB', rows:18420, received:'2025-12-02 23:40:21', source:'auto-fetch', folder:'/recon/inbox/easymudra/', status:'completed', validated:18420, failed:0, duration:'14s', user:'recon-bot' },
-  { id:'F-9840', file:'YESBank_BCA_remittance_dec2.xlsx', vendor:'YESBANK', size:'2.8 MB', rows:14820, received:'2025-12-02 23:35:42', source:'auto-fetch', folder:'/recon/inbox/yesbank/', status:'completed', validated:14820, failed:0, duration:'12s', user:'recon-bot' },
-  { id:'F-9839', file:'TRM_recon_02122025.xlsx', vendor:'TRM', size:'1.6 MB', rows:8740, received:'2025-12-02 23:20:14', source:'manual-upload', folder:'-', status:'completed', validated:8718, failed:22, duration:'9s', user:'priya.s@spayindia.com' },
-  { id:'F-9838', file:'Paysprint_TXN_DAILY_02DEC.xlsx', vendor:'PAYSPRINT', size:'2.1 MB', rows:15290, received:'2025-12-02 22:18:00', source:'auto-fetch', folder:'/recon/inbox/paysprint/', status:'completed', validated:15290, failed:0, duration:'11s', user:'recon-bot' },
-  { id:'F-9837', file:'Razorpay_settlement_FY26Q3.xlsx', vendor:'RAZORPAY', size:'1.4 MB', rows:9450, received:'2025-12-02 21:50:33', source:'auto-fetch', folder:'/recon/inbox/razorpay/', status:'completed', validated:9450, failed:0, duration:'7s', user:'recon-bot' },
-  { id:'F-9836', file:'AirtelPB_settlement_02122025.xlsx', vendor:'AIRTELPB', size:'0.9 MB', rows:5430, received:'2025-12-02 20:10:18', source:'auto-fetch', folder:'/recon/inbox/airtelpb/', status:'parsing', validated:0, failed:0, duration:'-', user:'recon-bot' },
-  { id:'F-9835', file:'Fino_AEPS_report.xlsx', vendor:'FINOPB', size:'1.2 MB', rows:7820, received:'2025-12-02 19:45:00', source:'manual-upload', folder:'-', status:'failed', validated:0, failed:7820, duration:'2s', user:'rajesh.k@spayindia.com', error:'Schema mismatch: column "RRN" not found, expected at position 5' },
-  { id:'F-9834', file:'Axis_settlement_Dec02.xlsx', vendor:'AXIS', size:'1.8 MB', rows:9870, received:'2025-12-02 18:20:11', source:'auto-fetch', folder:'/recon/inbox/axis/', status:'completed', validated:9870, failed:0, duration:'13s', user:'recon-bot' },
-  { id:'F-9833', file:'NSDL_PB_daily.csv', vendor:'NSDLPB', size:'0.5 MB', rows:3140, received:'2025-12-02 17:00:25', source:'auto-fetch', folder:'/recon/inbox/nsdl/', status:'completed', validated:3140, failed:0, duration:'5s', user:'recon-bot' },
-  { id:'F-9832', file:'QuickpayPG_02DEC.xlsx', vendor:'QUICKPAY', size:'0.8 MB', rows:4830, received:'2025-12-02 16:30:50', source:'auto-fetch', folder:'/recon/inbox/quickpay/', status:'completed', validated:4830, failed:0, duration:'6s', user:'recon-bot' },
-  { id:'F-9831', file:'EscrowHDFC_NEFT_02122025.xlsx', vendor:'ESCROWHDFC', size:'1.0 MB', rows:5680, received:'2025-12-02 15:15:00', source:'auto-fetch', folder:'/recon/inbox/escrowhdfc/', status:'completed', validated:5680, failed:0, duration:'8s', user:'recon-bot' },
-  { id:'F-9830', file:'Earthly_BBPS_summary.xlsx', vendor:'EARTHLY', size:'1.1 MB', rows:6210, received:'2025-12-02 14:00:18', source:'auto-fetch', folder:'/recon/inbox/earthly/', status:'completed', validated:6210, failed:0, duration:'9s', user:'recon-bot' },
-  { id:'F-9829', file:'ISU_AEPS_dec02.xlsx', vendor:'ISU', size:'2.0 MB', rows:12340, received:'2025-12-02 12:30:40', source:'auto-fetch', folder:'/recon/inbox/isu/', status:'completed', validated:12340, failed:0, duration:'10s', user:'recon-bot' },
+  { id:'F-9842', file:'Instantpay_DAILY_2026-05-02.xlsx', vendor:'INSTANTPAY', size:'4.7 MB', rows:23074, received:'2026-05-02 23:45:08', source:'auto-fetch', folder:'/recon/inbox/instantpay/', status:'completed', validated:23074, failed:0, duration:'18s', user:'recon-bot' },
+  { id:'F-9841', file:'Easymudra_settlement_2026-05-02.csv', vendor:'EASYMUDRA', size:'3.2 MB', rows:18420, received:'2026-05-02 23:40:21', source:'auto-fetch', folder:'/recon/inbox/easymudra/', status:'completed', validated:18420, failed:0, duration:'14s', user:'recon-bot' },
+  { id:'F-9840', file:'YESBank_BCA_remittance_dec2.xlsx', vendor:'YESBANK', size:'2.8 MB', rows:14820, received:'2026-05-02 23:35:42', source:'auto-fetch', folder:'/recon/inbox/yesbank/', status:'completed', validated:14820, failed:0, duration:'12s', user:'recon-bot' },
+  { id:'F-9839', file:'TRM_recon_02122025.xlsx', vendor:'TRM', size:'1.6 MB', rows:8740, received:'2026-05-02 23:20:14', source:'manual-upload', folder:'-', status:'completed', validated:8718, failed:22, duration:'9s', user:'priya.s@spayindia.com' },
+  { id:'F-9838', file:'Paysprint_TXN_DAILY_02DEC.xlsx', vendor:'PAYSPRINT', size:'2.1 MB', rows:15290, received:'2026-05-02 22:18:00', source:'auto-fetch', folder:'/recon/inbox/paysprint/', status:'completed', validated:15290, failed:0, duration:'11s', user:'recon-bot' },
+  { id:'F-9837', file:'Razorpay_settlement_FY26Q3.xlsx', vendor:'RAZORPAY', size:'1.4 MB', rows:9450, received:'2026-05-02 21:50:33', source:'auto-fetch', folder:'/recon/inbox/razorpay/', status:'completed', validated:9450, failed:0, duration:'7s', user:'recon-bot' },
+  { id:'F-9836', file:'AirtelPB_settlement_02122025.xlsx', vendor:'AIRTELPB', size:'0.9 MB', rows:5430, received:'2026-05-02 20:10:18', source:'auto-fetch', folder:'/recon/inbox/airtelpb/', status:'parsing', validated:0, failed:0, duration:'-', user:'recon-bot' },
+  { id:'F-9835', file:'Fino_AEPS_report.xlsx', vendor:'FINOPB', size:'1.2 MB', rows:7820, received:'2026-05-02 19:45:00', source:'manual-upload', folder:'-', status:'failed', validated:0, failed:7820, duration:'2s', user:'rajesh.k@spayindia.com', error:'Schema mismatch: column "RRN" not found, expected at position 5' },
+  { id:'F-9834', file:'Axis_settlement_Dec02.xlsx', vendor:'AXIS', size:'1.8 MB', rows:9870, received:'2026-05-02 18:20:11', source:'auto-fetch', folder:'/recon/inbox/axis/', status:'completed', validated:9870, failed:0, duration:'13s', user:'recon-bot' },
+  { id:'F-9833', file:'NSDL_PB_daily.csv', vendor:'NSDLPB', size:'0.5 MB', rows:3140, received:'2026-05-02 17:00:25', source:'auto-fetch', folder:'/recon/inbox/nsdl/', status:'completed', validated:3140, failed:0, duration:'5s', user:'recon-bot' },
+  { id:'F-9832', file:'QuickpayPG_02DEC.xlsx', vendor:'QUICKPAY', size:'0.8 MB', rows:4830, received:'2026-05-02 16:30:50', source:'auto-fetch', folder:'/recon/inbox/quickpay/', status:'completed', validated:4830, failed:0, duration:'6s', user:'recon-bot' },
+  { id:'F-9831', file:'EscrowHDFC_NEFT_02122025.xlsx', vendor:'ESCROWHDFC', size:'1.0 MB', rows:5680, received:'2026-05-02 15:15:00', source:'auto-fetch', folder:'/recon/inbox/escrowhdfc/', status:'completed', validated:5680, failed:0, duration:'8s', user:'recon-bot' },
+  { id:'F-9830', file:'Earthly_BBPS_summary.xlsx', vendor:'EARTHLY', size:'1.1 MB', rows:6210, received:'2026-05-02 14:00:18', source:'auto-fetch', folder:'/recon/inbox/earthly/', status:'completed', validated:6210, failed:0, duration:'9s', user:'recon-bot' },
+  { id:'F-9829', file:'ISU_AEPS_dec02.xlsx', vendor:'ISU', size:'2.0 MB', rows:12340, received:'2026-05-02 12:30:40', source:'auto-fetch', folder:'/recon/inbox/isu/', status:'completed', validated:12340, failed:0, duration:'10s', user:'recon-bot' },
 ];
 
 const COLUMN_MAPPINGS = [
   { vendor:'INSTANTPAY', vendorCol:'Ipay Order Id', standardCol:'order_id', type:'string', required:true, sample:'1251202000006CQQGM' },
-  { vendor:'INSTANTPAY', vendorCol:'Txn Date Time', standardCol:'txn_timestamp', type:'datetime', required:true, sample:'2025-12-02 00:00:06' },
+  { vendor:'INSTANTPAY', vendorCol:'Txn Date Time', standardCol:'txn_timestamp', type:'datetime', required:true, sample:'2026-05-02 00:00:06' },
   { vendor:'INSTANTPAY', vendorCol:'Transaction Id', standardCol:'rrn', type:'string', required:true, sample:'533600927465' },
   { vendor:'INSTANTPAY', vendorCol:'Product Code', standardCol:'product_code', type:'string', required:true, sample:'DPN' },
   { vendor:'INSTANTPAY', vendorCol:'Order Value', standardCol:'amount', type:'decimal', required:true, sample:'10000.00' },
@@ -4759,7 +4759,7 @@ function showFileDetail(fid){
         <div>[ERROR] Schema validation failed at row 1</div>
         <div>[ERROR] Expected column "RRN" at position 5</div>
         <div>[ERROR] Found column "Reference_Num" instead</div>
-        <div>[INFO]  Vendor may have changed file format on 2025-12-02</div>
+        <div>[INFO]  Vendor may have changed file format on 2026-05-02</div>
         <div>[INFO]  Suggestion: Update column mapping for FINOPB</div>
       </div>
     `}
@@ -5092,7 +5092,7 @@ function getWorkflowStepDetail(wfId, idx, step){
       `POST /api/v2/wallet/debit\nResponse: 200 OK\n{\n  "balance_after": 24580.42,\n  "ledger_entry": "LE-9038472"\n}`,
       `POST https://api.instantpay.in/v2/imps-transfer\nHeaders: X-API-Key: sk_live_...\n{\n  "merchantOrderId": "1251202000006CQQGM",\n  "amount": 10000,\n  "beneficiaryAccount": "5024****8821",\n  "beneficiaryIFSC": "SBIN0001234"\n}`,
       `Instantpay → YES Bank IMPS\nRoute: NEFT Pool Account\nSwitch: SBIN0001234`,
-      `Bank Response: SUCCESS\nRRN: 533600927465\nBeneficiary credit confirmed at 2025-12-02 00:00:08`,
+      `Bank Response: SUCCESS\nRRN: 533600927465\nBeneficiary credit confirmed at 2026-05-02 00:00:08`,
       `recon_engine.match(\n  internal_txn = SPay.ledger.get('1251202000006CQQGM'),\n  vendor_txn = Instantpay.mis.get('1251202000006CQQGM'),\n  rule = vendor_charges.get_rule('DPN', amount=10000)\n)\n→ Result: MISMATCH (variance ₹0.63)`,
     ],
     'aeps_cash_withdrawal_flow': [
@@ -5104,7 +5104,7 @@ function getWorkflowStepDetail(wfId, idx, step){
       `recon_engine.match(\n  expected_commission = 2500 * 0.0045 = 11.25,\n  actual_commission = 11.25\n)\n→ Result: MATCH`,
     ],
     'reconciliation_logic_flow': [
-      `SFTP polling job\nServer: sftp.instantpay.in:22\nFile: Instantpay_DAILY_2025-12-02.xlsx\nSize: 4.7 MB, Rows: 23,074`,
+      `SFTP polling job\nServer: sftp.instantpay.in:22\nFile: Instantpay_DAILY_2026-05-02.xlsx\nSize: 4.7 MB, Rows: 23,074`,
       `vendor_charges_rulebook.load()\n→ 60 rules loaded\n→ Version: v2025.12\n→ Checksum verified`,
       `for txn in mis_file:\n  rule = vendor_charges.match_slab(txn.product, txn.amount)\n  if not rule:\n    flag_missing_rule(txn)`,
       `expectedCharge = rule.base_rate * (1 + rule.gst_rate / 100) if not rule.gst_inclusive else rule.base_rate`,
@@ -5125,7 +5125,7 @@ function getWorkflowStepDetail(wfId, idx, step){
   const apiSnippet = (snippets[idx] || snippets[0]).replace(/'/g, "\\'");
 
   const payloads = [
-    `{\n  "order_id": "1251202000006CQQGM",\n  "amount": 10000.00,\n  "product": "DPN",\n  "timestamp": "2025-12-02T00:00:06Z",\n  "agent_id": "RTL-04578",\n  "status": "SUCCESS"\n}`,
+    `{\n  "order_id": "1251202000006CQQGM",\n  "amount": 10000.00,\n  "product": "DPN",\n  "timestamp": "2026-05-02T00:00:06Z",\n  "agent_id": "RTL-04578",\n  "status": "SUCCESS"\n}`,
     `{\n  "vendor_txn_id": "INS-892374",\n  "rrn": "533600927465",\n  "actual_charge": 4.13,\n  "expected_charge": 3.50,\n  "variance": 0.63,\n  "rule_id": "R002"\n}`,
   ];
 
@@ -5175,7 +5175,7 @@ function showWalletDetail(wid){
     const amt = Math.floor(Math.random()*100000) + 1000;
     runBal = isCredit ? runBal + amt : runBal - amt;
     recentTxns.push({
-      time: '2025-12-02 ' + Math.floor(Math.random()*24).toString().padStart(2,'0') + ':' + Math.floor(Math.random()*60).toString().padStart(2,'0'),
+      time: '2026-05-02 ' + Math.floor(Math.random()*24).toString().padStart(2,'0') + ':' + Math.floor(Math.random()*60).toString().padStart(2,'0'),
       type: isCredit ? 'CREDIT' : 'DEBIT',
       amount: amt,
       ref: ['IMPS Settlement','UPI Payout','AEPS Commission','Wallet Top-up','Service Charge','BBPS Commission','Refund'][Math.floor(Math.random()*7)],
@@ -5289,11 +5289,11 @@ function showPendingDetail(tid){
     <h3 style="font-family:var(--serif); font-size:18px; margin-bottom:12px; margin-top:24px;">Chase Log</h3>
     <div style="background:#F8FAFC; padding:14px; border-radius:8px; font-size:13px; line-height:1.8;">
       ${[
-        {time:'2025-12-02 09:15',user:'recon-bot',action:'Auto-flagged as pending > 1 day'},
-        {time:'2025-12-02 11:30',user:'priya.s@spayindia.com',action:'Initial vendor contact via email'},
-        {time:'2025-12-02 14:45',user:'priya.s@spayindia.com',action:'Vendor acknowledged · ETA: 24 hours'},
-        {time:'2025-12-03 10:00',user:'recon-bot',action:'Follow-up email sent'},
-        {time:'2025-12-03 16:30',user:'rajesh.k@spayindia.com',action:'Escalated to vendor support manager'},
+        {time:'2026-05-02 09:15',user:'recon-bot',action:'Auto-flagged as pending > 1 day'},
+        {time:'2026-05-02 11:30',user:'priya.s@spayindia.com',action:'Initial vendor contact via email'},
+        {time:'2026-05-02 14:45',user:'priya.s@spayindia.com',action:'Vendor acknowledged · ETA: 24 hours'},
+        {time:'2026-05-03 10:00',user:'recon-bot',action:'Follow-up email sent'},
+        {time:'2026-05-03 16:30',user:'rajesh.k@spayindia.com',action:'Escalated to vendor support manager'},
       ].slice(0, p.age + 1).map(l => `<div style="padding:6px 0; border-bottom:1px solid #E2E8F0;"><span style="font-family:var(--mono); color:var(--text-tertiary); font-size:11px;">${l.time}</span> · <strong>${l.user}</strong>: ${l.action}</div>`).join('')}
     </div>
 
@@ -5353,7 +5353,7 @@ function showRetailerDetail(retailerName){
     ${r.status === 'Hold' ? `
       <h3 style="font-family:var(--serif); font-size:18px; margin-bottom:12px; margin-top:24px;">Hold Reason</h3>
       <div style="background:#FEF3C7; padding:14px; border-radius:8px; border-left:3px solid var(--warning); font-size:13px; line-height:1.6;">
-        KYC re-verification required - documents expiring on Dec 15, 2025. Retailer must submit fresh Aadhaar + bank proof before transactions can resume.
+        KYC re-verification required - documents expiring on April 11, 2026. Retailer must submit fresh Aadhaar + bank proof before transactions can resume.
       </div>
     ` : ''}
 
@@ -5424,8 +5424,8 @@ function showGSTFilingDetail(period){
     <h3 style="font-family:var(--serif); font-size:18px; margin-bottom:12px;">Return Details</h3>
     <div class="detail-row"><div class="detail-label">Period</div><div class="detail-value">${period}</div></div>
     <div class="detail-row"><div class="detail-label">GSTIN</div><div class="detail-value" style="font-family:var(--mono);">07AAJCS3712M1ZA</div></div>
-    <div class="detail-row"><div class="detail-label">Filing Date</div><div class="detail-value">11 Nov 2025</div></div>
-    <div class="detail-row"><div class="detail-label">Due Date</div><div class="detail-value">20 Nov 2025</div></div>
+    <div class="detail-row"><div class="detail-label">Filing Date</div><div class="detail-value">5 May 2026</div></div>
+    <div class="detail-row"><div class="detail-label">Due Date</div><div class="detail-value">10 May 2026</div></div>
     <div class="detail-row"><div class="detail-label">Status</div><div class="detail-value"><span class="pill pill-success">Filed</span></div></div>
 
     <h3 style="font-family:var(--serif); font-size:18px; margin-bottom:12px; margin-top:24px;">Tax Summary</h3>
